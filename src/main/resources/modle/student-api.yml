@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: student api
+  description: Optimized API for managing student details
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /students/add:
+    post:
+      summary: Add student details
+      description: Adds new student details to the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentDto'
+      responses:
+        '200':
+          description: Successfully added student
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentDto'
+
+components:
+  schemas:
+    StudentDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the student
+        firstName:
+          type: string
+          description: First name of the student
+        lastName:
+          type: string
+          description: Last name of the student
+        email:
+          type: string
+          format: email
+          description: Email address of the student
+        mobileNumber:
+          type: string
+          description: Mobile number of the student (to preserve leading zeros or large numbers)
+
